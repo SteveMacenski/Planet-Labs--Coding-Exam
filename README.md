@@ -35,5 +35,7 @@ So... rules are:
 
 8. Have fun :-) overall, it was a nice afternoon project, would recommend. 
 
+NOTE: Dictionary I used has words missing from sample output so sample output.png has different results
+
 
 MIT License and all, feel free to use for all of your word-manipulating needs. Throw me a line if you think of something cool to use this for, I would love to hear about it. 
