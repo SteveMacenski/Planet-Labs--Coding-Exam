@@ -1,5 +1,5 @@
 #Coding test for Planet Labs
-# Steve Macenski October 21, 2015
+# Steve Macenski October 23, 2015
 
 #This program will use a dictionary to check an inputted word's anagrams
 #then print out all possible anagrams made up of such word>4 characters
@@ -57,9 +57,7 @@ def AnagramsofAnagrams(SizedAnagrams):
     entryParadise = [];
     elementParadise = [];
     final_list = [];
-    index = 0;
     i = 0;
-    j = 0;
     
     for entry in SizedAnagrams:
         for element in SizedAnagrams:
@@ -80,7 +78,7 @@ def AnagramsofAnagrams(SizedAnagrams):
             final_list.append(elementParadise[i])
             final_list.append('break')                  #break to mark end of sub-anagram chain 
             i+=1
-    final_list.append(elementParadise[i-1])               #picking up last values where forward difference breaks down
+    final_list.append(elementParadise[i-1])             #picking up last values where forward difference breaks down
     final_list.append(entryParadise[i-1])
     final_list.append(elementParadise[i])
     return final_list             
@@ -90,8 +88,8 @@ def PrintAnagrams(final_list):
     index = 0
     pokedex = []
     value = []
-    words = []
     printer = ""
+    
     for entry in final_list:                            #using the break, breaks the list and prints a comma deliniated listing
         if entry == 'break':
             if len(value) < len(final_list[index-1]):   #makes sure there are as many words as letters 
@@ -114,12 +112,12 @@ def PrintAnagrams(final_list):
             index +=1
     return
 
-#calling functions
+                                                        #calling functions
 ErrorCheck(Word)
 wordlist = GetDictionary()
 Anagrams  = FindingAnagramsofInputWord(wordlist)
 SizedAnagrams  = AnagramSize(Anagrams)
-if not SizedAnagrams:
+if not SizedAnagrams:                                   #to stop if no 4+ letter anagrams are found
     print 'No anagrams were found'
 else:
     final_list     = AnagramsofAnagrams(SizedAnagrams)
