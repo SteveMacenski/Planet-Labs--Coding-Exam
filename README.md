@@ -18,6 +18,7 @@ inset, neist, snite, stein, stine, tsine"
 
 
 So... rules are: 
+
 1. Find anagrams of input 
 
 2. Find all anagrams making up any number of letters of the input (since sample output has lines of multiple numbers of characters)
