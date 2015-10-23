@@ -9,7 +9,6 @@ import itertools
 
 Word = raw_input('input at least a 4 letter word with as many anagrams: '); #user input
 Word = Word.lower();                                    #force input to be lowercase, to display nice
-noAnagrams = False
 
 def ErrorCheck(Word):                                   #make sure inputs are right size
     if Word == 0:
@@ -29,6 +28,7 @@ def GetDictionary():
     return wordlist
         
 def FindingAnagramsofInputWord(wordlist):
+    noAnagrams = False
     Letters = list(Word)                                #splits the string into its letters
     Letters_set = set(Letters);                         #makes into non-ordered set
     Anagrams = [];
@@ -43,9 +43,7 @@ def FindingAnagramsofInputWord(wordlist):
             isword = False   
         if isword and dictionaryWord.issubset(Letters_set) and Entry != "":
             Anagrams.append(Entry)                      #creates set of all anagrams of any length with ONLY characters of Letter_set    
-    if not Anagrams:
-        noAnagrams = False
-    return Anagrams, noAnagrams
+    return Anagrams
         
 
 def AnagramSize(Anagrams):
@@ -74,17 +72,14 @@ def AnagramsofAnagrams(SizedAnagrams):
                 entryParadise.append(entry)             #appending both to check against eachother
 
     while (i < (-2+len(entryParadise))):
-
         if entryParadise[i] == entryParadise[i+1]:      #finds where the pattern from the nested loops exists and exploits it
             final_list.append(elementParadise[i])
             i += 1
-            
         if entryParadise[i] != entryParadise[i+1]:
             final_list.append(entryParadise[i])
             final_list.append(elementParadise[i])
             final_list.append('break')                  #break to mark end of sub-anagram chain 
             i+=1
-            
     final_list.append(elementParadise[i-1])               #picking up last values where forward difference breaks down
     final_list.append(entryParadise[i-1])
     final_list.append(elementParadise[i])
@@ -119,13 +114,14 @@ def PrintAnagrams(final_list):
             index +=1
     return
 
-         #TODO: fix case if there are no anagrams and throws line85 error.
-            #(if there are some anagrams but not enough, program completes)
 #calling functions
 ErrorCheck(Word)
-wordlist       = GetDictionary()
-Anagrams, noAnagrams  = FindingAnagramsofInputWord(wordlist)
-if noAnagrams:
-    SizedAnagrams  = AnagramSize(Anagrams)
+wordlist = GetDictionary()
+Anagrams  = FindingAnagramsofInputWord(wordlist)
+SizedAnagrams  = AnagramSize(Anagrams)
+if not SizedAnagrams:
+    print 'No anagrams were found'
+else:
     final_list     = AnagramsofAnagrams(SizedAnagrams)
     PrintAnagrams(final_list)
+
