@@ -9,6 +9,7 @@ import itertools
 
 Word = raw_input('input at least a 4 letter word with as many anagrams: '); #user input
 Word = Word.lower();                                    #force input to be lowercase, to display nice
+noAnagrams = False
 
 def ErrorCheck(Word):                                   #make sure inputs are right size
     if Word == 0:
@@ -42,7 +43,9 @@ def FindingAnagramsofInputWord(wordlist):
             isword = False   
         if isword and dictionaryWord.issubset(Letters_set) and Entry != "":
             Anagrams.append(Entry)                      #creates set of all anagrams of any length with ONLY characters of Letter_set    
-    return Anagrams
+    if not Anagrams:
+        noAnagrams = False
+    return Anagrams, noAnagrams
         
 
 def AnagramSize(Anagrams):
@@ -82,9 +85,9 @@ def AnagramsofAnagrams(SizedAnagrams):
             final_list.append('break')                  #break to mark end of sub-anagram chain 
             i+=1
             
-    final_list.append(elementParadise[i])               #picking up last values where forward difference breaks down
-    final_list.append(entryParadise[i])
-    final_list.append(elementParadise[i+1])
+    final_list.append(elementParadise[i-1])               #picking up last values where forward difference breaks down
+    final_list.append(entryParadise[i-1])
+    final_list.append(elementParadise[i])
     return final_list             
 
 
@@ -115,11 +118,14 @@ def PrintAnagrams(final_list):
             value.sort()
             index +=1
     return
-                
+
+         #TODO: fix case if there are no anagrams and throws line85 error.
+            #(if there are some anagrams but not enough, program completes)
 #calling functions
 ErrorCheck(Word)
 wordlist       = GetDictionary()
-Anagrams       = FindingAnagramsofInputWord(wordlist)
-SizedAnagrams  = AnagramSize(Anagrams)
-final_list     = AnagramsofAnagrams(SizedAnagrams)
-PrintAnagrams(final_list)
+Anagrams, noAnagrams  = FindingAnagramsofInputWord(wordlist)
+if noAnagrams:
+    SizedAnagrams  = AnagramSize(Anagrams)
+    final_list     = AnagramsofAnagrams(SizedAnagrams)
+    PrintAnagrams(final_list)
