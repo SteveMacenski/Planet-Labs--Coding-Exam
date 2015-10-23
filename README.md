@@ -19,10 +19,17 @@ inset, neist, snite, stein, stine, tsine"
 
 So... rules are: 
 1. Find anagrams of input 
+
 2. Find all anagrams making up any number of letters of the input (since sample output has lines of multiple numbers of characters)
+
 3. Compare these anagrams to a dictionary (file I used attached to repo)
+
 4. Anagrams must be 4 characters long 
+
 5. For each n letter combination, there must be n+ words, where n>=4
+
 6. Prints lines where each line is in alphabetical order 
+
 7. Prints lines such that each line is made up of the same letters in different combinations 
+
 8. Have fun :-) overall, it was a nice afternoon project, would recommend. 
