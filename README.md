@@ -11,9 +11,13 @@ The dictionary will be a file on disk with one line per word. Your operating sys
 The output produced by your code should be in this format:
 
 emit, item, mite, time
+
 merit, miter, mitre, remit, timer
+
 reins, resin, rinse, risen, serin, siren
+
 inert, inter, niter, retin, trine
+
 inset, neist, snite, stein, stine, tsine"
 
 
